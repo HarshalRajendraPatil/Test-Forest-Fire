@@ -1,0 +1,374 @@
+/* ============================================
+   FWI Prediction — Forest & Flame Design System
+   ============================================ */
+
+@import url("https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap");
+
+:root {
+  --bg-deep: #0a0e14;
+  --bg-card: rgba(18, 26, 33, 0.85);
+  --bg-card-border: rgba(255, 180, 100, 0.12);
+  --text-primary: #f0ebe3;
+  --text-muted: #9ca3a8;
+  --accent-flame: #e8a84a;
+  --accent-flame-bright: #f5c76b;
+  --accent-forest: #3d8b6e;
+  --accent-glow: rgba(232, 168, 74, 0.35);
+  --danger: #c75c5c;
+  --success: #4a9b7a;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --shadow-soft: 0 8px 32px rgba(0, 0, 0, 0.4);
+  --shadow-glow: 0 0 40px var(--accent-glow);
+  --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "DM Sans", system-ui, sans-serif;
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  min-height: 100vh;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- Background treatments ---------- */
+.bg-gradient-page {
+  background:
+    radial-gradient(
+      ellipse 120% 80% at 50% -20%,
+      rgba(61, 139, 110, 0.15),
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse 80% 60% at 90% 50%,
+      rgba(232, 168, 74, 0.08),
+      transparent 45%
+    ),
+    radial-gradient(
+      ellipse 60% 80% at 10% 80%,
+      rgba(232, 168, 74, 0.06),
+      transparent 45%
+    ),
+    linear-gradient(180deg, #0d1218 0%, #0a0e14 100%);
+  min-height: 100vh;
+}
+
+.bg-pattern {
+  background-image: radial-gradient(
+    circle at 1px 1px,
+    rgba(255, 255, 255, 0.03) 1px,
+    transparent 0
+  );
+  background-size: 32px 32px;
+}
+
+/* ---------- Typography ---------- */
+h1,
+h2,
+.font-heading {
+  font-family: "Syne", sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  line-height: 1.15;
+  background: linear-gradient(
+    135deg,
+    var(--text-primary) 0%,
+    var(--accent-flame) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+h2 {
+  font-size: clamp(1.35rem, 3vw, 1.75rem);
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  font-weight: 400;
+  max-width: 520px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* ---------- Layout ---------- */
+.container {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem 1rem;
+  text-align: center;
+}
+
+.hero h1 {
+  margin-bottom: 1rem;
+}
+
+.hero .subtitle {
+  margin-bottom: 2.5rem;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: "Syne", sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.95rem 2rem;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition),
+    background var(--transition);
+  text-decoration: none;
+  color: var(--bg-deep);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--accent-flame-bright);
+  outline-offset: 3px;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent-flame) 0%, #d4923a 100%);
+  color: var(--bg-deep);
+  box-shadow: 0 4px 20px var(--accent-glow);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px var(--accent-glow);
+  background: linear-gradient(
+    135deg,
+    var(--accent-flame-bright) 0%,
+    var(--accent-flame) 100%
+  );
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+/* ---------- Cards ---------- */
+.card {
+  background: var(--bg-card);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--bg-card-border);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  box-shadow: var(--shadow-soft);
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition);
+}
+
+.card:hover {
+  border-color: rgba(255, 180, 100, 0.18);
+  box-shadow:
+    var(--shadow-soft),
+    0 0 0 1px rgba(255, 180, 100, 0.06);
+}
+
+.card-title {
+  font-family: "Syne", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+  color: var(--text-primary);
+}
+
+.card-subtitle {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+}
+
+/* ---------- Form ---------- */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 1.75rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-group label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+.form-group input {
+  width: 100%;
+  font-family: "DM Sans", sans-serif;
+  font-size: 1rem;
+  padding: 0.75rem 1rem;
+  background: rgba(10, 14, 20, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition);
+}
+
+.form-group input::placeholder {
+  color: var(--text-muted);
+  opacity: 0.7;
+}
+
+.form-group input:hover {
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--accent-flame);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+.form-actions {
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.form-actions .btn {
+  min-width: 140px;
+}
+
+/* ---------- Result display ---------- */
+.result-box {
+  margin-top: 2rem;
+  padding: 1.5rem 1.75rem;
+  background: linear-gradient(
+    135deg,
+    rgba(232, 168, 74, 0.12) 0%,
+    rgba(61, 139, 110, 0.08) 100%
+  );
+  border: 1px solid rgba(232, 168, 74, 0.25);
+  border-radius: var(--radius-md);
+  text-align: center;
+}
+
+.result-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent-flame);
+  margin-bottom: 0.35rem;
+}
+
+.result-value {
+  font-family: "Syne", sans-serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* ---------- Page header (inner pages) ---------- */
+.page-header {
+  padding: 2rem 0 1.5rem;
+  text-align: center;
+}
+
+.page-header h1 {
+  margin-bottom: 0.5rem;
+}
+
+.page-header .subtitle {
+  margin: 0;
+}
+
+/* ---------- Nav / back link ---------- */
+.back-link {
+  position: fixed;
+  top: 1.5rem;
+  left: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color var(--transition);
+  z-index: 10;
+}
+
+.back-link:hover {
+  color: var(--accent-flame);
+}
+
+/* ---------- Decorative elements ---------- */
+.hero-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent-forest);
+  margin-bottom: 1rem;
+  padding: 0.4rem 0.9rem;
+  background: rgba(61, 139, 110, 0.2);
+  border-radius: 100px;
+  border: 1px solid rgba(61, 139, 110, 0.35);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 640px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    padding: 1.5rem;
+  }
+
+  .form-actions .btn {
+    width: 100%;
+  }
+}
